@@ -1,4 +1,4 @@
-const choices = ["Rock", "Paper", "Scissors"];
+const choices = ["rock", "paper", "scissors"];
 let humanScore = 0;
 let computerScore = 0;
 
@@ -16,7 +16,7 @@ function getHumanChoice() {
             return
         }
 
-        const choiceFormatted = formatString(choice)
+        const choiceFormatted = choice.toLowerCase();
         if (choices.includes(choiceFormatted)) {
             return choiceFormatted
         } else {
@@ -26,7 +26,4 @@ function getHumanChoice() {
     }
 }
 
-// helper function to capitalize string
-function formatString(str) {
-    return (str[0].toUpperCase() + str.substring(1).toLowerCase());
-}
+getHumanChoice()
