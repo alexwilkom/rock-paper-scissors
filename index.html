@@ -5,12 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock, Paper & Scissors</title>
-    <script type="module" src="./script.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="./script.js"></script>
 </head>
 
 <body>
-    <h1>Play Rock, Paper and Scissors</h1>
-    <button>Start Game</button>
+    <div id="game">
+        <h1>Play Rock, Paper and Scissors</h1>
+        <div id="computer-choice"></div>
+        <div id="info"></div>
+        <div id="start">
+            <div id="choices">
+                <button class="btn-choice">Rock</button>
+                <button class="btn-choice">Paper</button>
+                <button class="btn-choice">Scissors</button>
+            </div>
+            <div id="scores">
+                Player score: <span class="player-score">0</span>
+                Computer score: <span class="computer-score">0</span>
+            </div>
+            <div id="rounds">
+                <span class="round">Round 1 of 5</span>
+            </div>
+        </div>
+        <div id="restart">
+            <button class="restart-game">Restart</button>
+        </div>
+    </div>
 </body>
 
 </html>
