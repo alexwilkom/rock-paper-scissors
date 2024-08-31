@@ -1,6 +1,3 @@
-
-const startContainer = document.querySelector("#start");
-const restartContainer = document.querySelector("#restart");
 const restartGameBtn = document.querySelector(".restart-game");
 const info = document.querySelector("#info");
 const choicesContainer = document.querySelector("#choices");
