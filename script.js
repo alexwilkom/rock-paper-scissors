@@ -1,3 +1,5 @@
+const button = document.querySelector("button");
+
 function getComputerChoice() {
     const choices = ["rock", "paper", "scissors"];
     const randomNumber = Math.floor(Math.random() * choices.length);
@@ -6,21 +8,18 @@ function getComputerChoice() {
 
 function getHumanChoice() {
     const choices = ["rock", "paper", "scissors"];
-    while (true) {
-        const choice = prompt("What do you choose?");
+    const choice = prompt("Rock, paper or scissors?");
 
-        if (choice === null) {
-            alert("Game cancelled.")
-            return "";
-        }
-
-        const choiceFormatted = choice.toLowerCase();
-        if (choices.includes(choiceFormatted)) {
-            return choiceFormatted
-        } else {
-            alert("You must choose between rock, paper or scissors.")
-            continue
-        }
+    if (choice === null) {
+        alert("Game cancelled.")
+        return null;
+    }
+    const choiceFormatted = choice.toLowerCase();
+    if (choices.includes(choiceFormatted)) {
+        return choiceFormatted
+    } else {
+        alert("You must choose between rock, paper or scissors.")
+        getHumanChoice();
     }
 }
 
@@ -65,10 +64,15 @@ function playGame() {
     for (let i = rounds; i > 0; i--) {
         const computerChoice = getComputerChoice();
         const humanChoice = getHumanChoice();
-        playRound(humanChoice, computerChoice);
-        console.log(`Your score: ${humanScore}`);
-        console.log(`Computer score: ${computerScore}`);
-        console.log(`Rounds left: ${i - 1}`);
+        if (humanChoice) {
+            playRound(humanChoice, computerChoice)
+            console.log(`Your score: ${humanScore}`);
+            console.log(`Computer score: ${computerScore}`);
+            console.log(`Rounds left: ${i - 1}`);
+        } else {
+            console.log(`Cancelled`);
+            return;
+        }
     }
 
     if (humanScore > computerScore) {
@@ -81,4 +85,4 @@ function playGame() {
 
 }
 
-playGame();
+button.addEventListener('click', playGame);
