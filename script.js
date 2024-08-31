@@ -1,11 +1,11 @@
-const choices = ["rock", "paper", "scissors"];
-
 function getComputerChoice() {
+    const choices = ["rock", "paper", "scissors"];
     const randomNumber = Math.floor(Math.random() * choices.length);
     return choices[randomNumber]
 }
 
 function getHumanChoice() {
+    const choices = ["rock", "paper", "scissors"];
     while (true) {
         const choice = prompt("What do you choose?");
 
@@ -24,30 +24,42 @@ function getHumanChoice() {
     }
 }
 
+function isHumanWinner(humanChoice, computerChoice) {
+    if (
+        (humanChoice === 'rock' && computerChoice === 'paper') ||
+        (humanChoice === 'paper' && computerChoice === 'scissors') ||
+        (humanChoice === 'scissors' && computerChoice === 'rock')
+    ) {
+        return false;
+    }
+    return true;
+}
+
 function playGame() {
     let humanScore = 0;
     let computerScore = 0;
     let rounds = 5;
 
-    console.log('The winner in 5 rounds.');
-
+    console.log('\nThe winner in 5 rounds.\n');
 
     function playRound(humanChoice, computerChoice) {
-        console.log(`The computer chose ${computerChoice}.`);
+        console.log(`\nThe computer chose ${computerChoice}.`);
         console.log(`You chose ${humanChoice}.`);
 
-        const outcomes = {
-            rock: { rock: 'It is a tie!', paper: 'You lose! Paper beats Rock.', scissors: 'You win! Rock beats Scissors.' },
-            paper: { rock: 'You win! Paper beats Rock.', paper: 'It is a tie!', scissors: 'You lose! Scissors beat Paper.' },
-            scissors: { rock: 'You lose! Rock beats Scissors.', paper: 'You win! Scissors beat Paper.', scissors: 'It is a tie!' }
-        };
+        if (humanChoice === computerChoice) {
+            console.log(`It's a tie!\n`);
+            return
+        }
 
-        const outcome = outcomes[humanChoice][computerChoice];
-
-        if (outcome.includes('win')) humanScore += 1;
-        if (outcome.includes('lose')) computerScore += 1;
-
-        console.log(outcome);
+        if (isHumanWinner(humanChoice, computerChoice)) {
+            console.log(`You win; ${humanChoice} beats ${computerChoice}.\n`);
+            humanScore++;
+            return
+        } else {
+            console.log(`You lose; ${computerChoice} beats ${humanChoice}.\n`);
+            computerScore++;
+            return
+        }
     }
 
     for (let i = rounds; i > 0; i--) {
